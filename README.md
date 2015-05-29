@@ -4,7 +4,7 @@ A 'Google Fit' like activity indicator for Android
 Screenshots
 -----------
 
-![Image](../master/readme_images/customview.png?raw=true)
+![Image](../master/art/customview.png?raw=true)
 
 License
 -------
