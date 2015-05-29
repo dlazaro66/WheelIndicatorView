@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WheelIndicatorView">
+        <attr name="itemsLineWidth" format="dimension" />
+        <attr name="filledPercent" format="integer" />
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+</resources>
