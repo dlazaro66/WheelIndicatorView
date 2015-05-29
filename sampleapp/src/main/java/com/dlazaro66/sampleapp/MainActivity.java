@@ -4,8 +4,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 
-import com.dlazaro66.fitindicatorview.WheelIndicatorItem;
-import com.dlazaro66.fitindicatorview.WheelIndicatorView;
+import com.dlazaro66.wheelindicatorview.WheelIndicatorItem;
+import com.dlazaro66.wheelindicatorview.WheelIndicatorView;
 
 
 public class MainActivity extends Activity {
