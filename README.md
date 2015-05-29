@@ -1,5 +1,6 @@
 # WheelIndicatorView
 A 'Google Fit' like activity indicator for Android
+[![Build Status](https://travis-ci.org/dlazaro66/WheelIndicatorView.svg?branch=master)](https://travis-ci.org/dlazaro66/WheelIndicatorView)
 
 Screenshots
 -----------
