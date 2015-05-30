@@ -1,19 +1,16 @@
 package com.dlazaro66.wheelindicatorview;
 
-import android.graphics.Color;
-
-import junit.framework.TestCase;
-
 import org.junit.Test;
 
 /**
  * Created by david on 25/5/15.
  */
-public class WheelIndicatorItemTest extends TestCase {
+public class WheelIndicatorItemTest{
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorShouldThrowExceptionWhenWeightIsNegative(){
-        WheelIndicatorItem item = new WheelIndicatorItem(-1, Color.parseColor("#aaffaa"));
+        int color = 0x0000000;
+        WheelIndicatorItem item = new WheelIndicatorItem(-1, color);
     }
 
     @Test(expected = IllegalArgumentException.class)
