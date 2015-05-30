@@ -83,6 +83,7 @@ public class WheelIndicatorView extends View {
             throw new IllegalArgumentException("wheelIndicatorItems cannot be null");
         this.wheelIndicatorItems = wheelIndicatorItems;
         recalculateItemsAngles();
+        invalidate();
     }
 
     public void setFilledPercent(int filledPercent) {
@@ -92,6 +93,7 @@ public class WheelIndicatorView extends View {
             this.filledPercent = 100;
         else
             this.filledPercent = filledPercent;
+        invalidate();
     }
 
     public int getFilledPercent() {
@@ -99,7 +101,10 @@ public class WheelIndicatorView extends View {
     }
 
     public void setItemsLineWidth(int itemLineWidth) {
+        if (itemLineWidth <= 0)
+            throw new IllegalArgumentException("itemLineWidth must be greater than 0");
         this.itemsLineWidth = itemLineWidth;
+        invalidate();
     }
 
     public void addWheelIndicatorItem(WheelIndicatorItem indicatorItem) {
@@ -108,6 +113,7 @@ public class WheelIndicatorView extends View {
 
         this.wheelIndicatorItems.add(indicatorItem);
         recalculateItemsAngles();
+        invalidate();
     }
 
     public void notifyDataSetChanged(){
@@ -151,14 +157,12 @@ public class WheelIndicatorView extends View {
 
         itemEndPointsPaint = new Paint();
         itemEndPointsPaint.setAntiAlias(true);
-
-
     }
 
     private void recalculateItemsAngles() {
         wheelItemsAngles.clear();
         float total = 0;
-        float angleAcum = 0;
+        float angleAccumulated = 0;
 
         for (WheelIndicatorItem item : wheelIndicatorItems){
             total += item.getWeight();
@@ -166,8 +170,8 @@ public class WheelIndicatorView extends View {
         for (int i=0; i < wheelIndicatorItems.size(); ++i) {
             float normalizedValue = wheelIndicatorItems.get(i).getWeight()/total;
             float angle = 360 * normalizedValue * filledPercent/100;
-            wheelItemsAngles.add(angle + angleAcum);
-            angleAcum += angle;
+            wheelItemsAngles.add(angle + angleAccumulated);
+            angleAccumulated += angle;
         }
     }
 
@@ -201,6 +205,7 @@ public class WheelIndicatorView extends View {
             this.traslationX = (maxDistViewSize - minDistViewSize) / 2;
             this.traslationY = 0;
         }
+        // Adding artificial padding, depending on line width
         wheelBoundsRectF = new RectF(0 + itemsLineWidth, 0 + itemsLineWidth, minDistViewSize - itemsLineWidth, minDistViewSize - itemsLineWidth);
     }
 
