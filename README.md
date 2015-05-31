@@ -36,7 +36,7 @@ How to use:
  WheelIndicatorView wheelIndicatorView = new WheelIndicatorView(context);
 ```
 
-- Then add elements to the indicator view, declaring as much WheelIndicatorItem objects as you want:
+- Then add elements to the indicator view, declaring as many WheelIndicatorItem objects as you want:
 ```
  WheelIndicatorItem bikeActivityIndicatorItem = new WheelIndicatorItem(1.5f , Color.parseColor("#FF5722"));
 ```
