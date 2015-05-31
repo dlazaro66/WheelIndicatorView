@@ -5,7 +5,7 @@ A 'Google Fit' like activity indicator for Android
 Screenshots
 -----------
 
-![Image](../master/art/customview.png?raw=true)
+![Image](../master/art/animated_wheelview.gif?raw=true)
 
 Usage
 -----
