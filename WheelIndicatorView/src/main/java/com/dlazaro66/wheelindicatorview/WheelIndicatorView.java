@@ -34,9 +34,9 @@ import java.util.List;
 
 /**
  * Displays a graphic in style with Google Fit Application.
- * @attr ref android.R.styleable.itemsLineWidth the width of the wheel indicator lines
- * @attr ref android.R.styleable.backgroundColor color for the inner circle
- * @attr ref android.R.styleable.filledPercent percent of circle filled by WheelItems values
+ * @attr ref android.R.styleable#itemsLineWidth the width of the wheel indicator lines
+ * @attr ref android.R.styleable#backgroundColor color for the inner circle
+ * @attr ref android.R.styleable#filledPercent percent of circle filled by WheelItems values
  * @author David Lázaro.
  */
 public class WheelIndicatorView extends View {
