@@ -1,4 +1,4 @@
-WheelIndicatorView [![Build Status](https://travis-ci.org/dlazaro66/WheelIndicatorView.svg?branch=master)](https://travis-ci.org/dlazaro66/WheelIndicatorView)
+WheelIndicatorView [![Build Status](https://travis-ci.org/dlazaro66/WheelIndicatorView.svg?branch=master)](https://travis-ci.org/dlazaro66/WheelIndicatorView) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-WheelIndicatorView-green.svg?style=flat)](https://android-arsenal.com/details/1/1912)
 ===
 A 'Google Fit' like activity indicator for Android
 
