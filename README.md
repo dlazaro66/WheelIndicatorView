@@ -1,4 +1,4 @@
-WheelIndicatorView [![Build Status](https://travis-ci.org/dlazaro66/WheelIndicatorView.svg?branch=master)](https://travis-ci.org/dlazaro66/WheelIndicatorView) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-WheelIndicatorView-green.svg?style=flat)](https://android-arsenal.com/details/1/1912)
+WheelIndicatorView [![Build Status](https://travis-ci.org/dlazaro66/WheelIndicatorView.svg?branch=master)](https://travis-ci.org/dlazaro66/WheelIndicatorView) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-WheelIndicatorView-green.svg?style=flat)](https://android-arsenal.com/details/1/1912) [ ![Download](https://api.bintray.com/packages/dlazaro66/maven/WheelIndicatorView/images/download.svg) ](https://bintray.com/dlazaro66/maven/WheelIndicatorView/_latestVersion)
 ===
 A 'Google Fit' like activity indicator for Android
 
@@ -26,9 +26,9 @@ How to use:
 ```
 - You can set different attributes just as:
 
-	- Lines size: WheelIndicatorView:itemsLineWidth
-	- Inner circle background color: WheelIndicatorView:backgroundColor
-	- % of circle filled: WheelIndicatorView:filledPercent
+    - Lines size: WheelIndicatorView:itemsLineWidth
+    - Inner circle background color: WheelIndicatorView:backgroundColor
+    - % of circle filled: WheelIndicatorView:filledPercent
 
 
 - Also, you can declare it programmatically:
@@ -48,6 +48,17 @@ How to use:
 
 - If you don't want your chart to be completed at 100% (for example if you're representing user fitness activity and daily target is only done at 35%) you should call ``` wheelIndicatorView.setFilledPercent(35) ``` 
 
+Add it to your project
+----------------------
+
+
+Add WheelIndicatorView dependency to your build.gradle
+
+```groovy
+dependencies{
+    compile 'com.dlazaro66.wheelindicatorview:WheelIndicatorView:1.0.0'
+}
+```
 
 Do you want to contribute?
 --------------------------
