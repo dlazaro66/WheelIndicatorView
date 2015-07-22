@@ -34,10 +34,11 @@ import java.util.List;
 
 /**
  * Displays a graphic in style with Google Fit Application.
+ *
+ * @author David Lázaro.
  * @attr ref android.R.styleable#itemsLineWidth the width of the wheel indicator lines
  * @attr ref android.R.styleable#backgroundColor color for the inner circle
  * @attr ref android.R.styleable#filledPercent percent of circle filled by WheelItems values
- * @author David Lázaro.
  */
 public class WheelIndicatorView extends View {
 
@@ -107,37 +108,64 @@ public class WheelIndicatorView extends View {
         invalidate();
     }
 
-    public void addWheelIndicatorItem(WheelIndicatorItem indicatorItem) {
+    /**
+     * Improved method that returns item position so the item could be replaced later
+     * @param indicatorItem
+     * @return position of the item in the list
+     */
+    public int addWheelIndicatorItem(WheelIndicatorItem indicatorItem) {
         if (indicatorItem == null)
             throw new IllegalArgumentException("wheelIndicatorItems cannot be null");
 
         this.wheelIndicatorItems.add(indicatorItem);
+        int position = wheelIndicatorItems.indexOf(indicatorItem);
+        notifyDataSetChanged();
+        return position;
+    }
+
+    /**
+     * Get the WheelIndicatorItem from the specified position
+     * @param position Position returned from the addWheelIndicatorItem() method
+     * @return WheelIndicatorItem stored on the requested position
+     */
+    public WheelIndicatorItem getWheelIndicatorItem(int position){
+        return wheelIndicatorItems.get(position);
+    }
+
+    /**
+     * Replaces the wheelIndicatorItem from the list. Useful for changing the item colors
+     * @param position Position of the item to be replaced
+     * @param item New item
+     */
+    public void replaceWheelIndicatorItem(int position, WheelIndicatorItem item){
+        wheelIndicatorItems.set(position, item);
+        notifyDataSetChanged();
+    }
+
+    public void notifyDataSetChanged() {
         recalculateItemsAngles();
         invalidate();
     }
 
-    public void notifyDataSetChanged(){
-        recalculateItemsAngles();
-        invalidate();
-    }
-
-    public void setBackgroundColor(int color){
+    public void setBackgroundColor(int color) {
         circleBackgroundPaint = new Paint();
         circleBackgroundPaint.setColor(color);
         invalidate();
     }
 
+//    public void setBackgroundGradien
+
     private void init(AttributeSet attrs) {
         TypedArray attributesArray = getContext().getTheme()
                 .obtainStyledAttributes(attrs, R.styleable.WheelIndicatorView, 0, 0);
 
-        int itemsLineWidth = attributesArray.getDimensionPixelSize(R.styleable.WheelIndicatorView_itemsLineWidth, DEFAULT_ITEM_LINE_WIDTH );
+        int itemsLineWidth = attributesArray.getDimensionPixelSize(R.styleable.WheelIndicatorView_itemsLineWidth, DEFAULT_ITEM_LINE_WIDTH);
         setItemsLineWidth(itemsLineWidth);
 
-        int filledPercent = attributesArray.getInt(R.styleable.WheelIndicatorView_filledPercent,DEFAULT_FILLED_PERCENT);
+        int filledPercent = attributesArray.getInt(R.styleable.WheelIndicatorView_filledPercent, DEFAULT_FILLED_PERCENT);
         setFilledPercent(filledPercent);
 
-        int bgColor = attributesArray.getColor(R.styleable.WheelIndicatorView_backgroundColor,-1);
+        int bgColor = attributesArray.getColor(R.styleable.WheelIndicatorView_backgroundColor, -1);
         if (bgColor != -1)
             setBackgroundColor(bgColor);
 
@@ -164,19 +192,19 @@ public class WheelIndicatorView extends View {
         float total = 0;
         float angleAccumulated = 0;
 
-        for (WheelIndicatorItem item : wheelIndicatorItems){
+        for (WheelIndicatorItem item : wheelIndicatorItems) {
             total += item.getWeight();
         }
-        for (int i=0; i < wheelIndicatorItems.size(); ++i) {
-            float normalizedValue = wheelIndicatorItems.get(i).getWeight()/total;
-            float angle = 360 * normalizedValue * filledPercent/100;
+        for (int i = 0; i < wheelIndicatorItems.size(); ++i) {
+            float normalizedValue = wheelIndicatorItems.get(i).getWeight() / total;
+            float angle = 360 * normalizedValue * filledPercent / 100;
             wheelItemsAngles.add(angle + angleAccumulated);
             angleAccumulated += angle;
         }
     }
 
     public void startItemsAnimation() {
-        ObjectAnimator animation = ObjectAnimator.ofInt(WheelIndicatorView.this,"filledPercent",0,filledPercent);
+        ObjectAnimator animation = ObjectAnimator.ofInt(WheelIndicatorView.this, "filledPercent", 0, filledPercent);
         animation.setDuration(ANIMATION_DURATION);
         animation.setInterpolator(PathInterpolatorCompat.create(0.4F, 0.0F, 0.2F, 1.0F));
         animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -228,8 +256,13 @@ public class WheelIndicatorView extends View {
     }
 
     private void draw(WheelIndicatorItem indicatorItem, RectF surfaceRectF, float angle, Canvas canvas) {
-        itemArcPaint.setColor(indicatorItem.getColor());
-        itemEndPointsPaint.setColor(indicatorItem.getColor());
+        if (indicatorItem.getPaint() == null) {
+            itemArcPaint.setColor(indicatorItem.getColor());
+            itemEndPointsPaint.setColor(indicatorItem.getColor());
+        } else {
+            itemArcPaint.setShader(indicatorItem.getPaint().getShader());
+            itemEndPointsPaint.setShader(indicatorItem.getPaint().getShader());
+        }
         // Draw arc
         canvas.drawArc(surfaceRectF, ANGLE_INIT_OFFSET, angle, false, itemArcPaint);
         // Draw top circle

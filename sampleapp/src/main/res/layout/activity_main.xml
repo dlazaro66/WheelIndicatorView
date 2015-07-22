@@ -12,7 +12,7 @@
 
     <com.dlazaro66.wheelindicatorview.WheelIndicatorView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/wheel_indicator_view"
         app:itemsLineWidth="13dp"
         app:filledPercent="40"

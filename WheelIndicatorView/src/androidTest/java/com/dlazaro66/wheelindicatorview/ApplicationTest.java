@@ -1,4 +1,4 @@
-package com.dlazaro66.fitindicatorview;
+package com.dlazaro66.wheelindicatorview;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

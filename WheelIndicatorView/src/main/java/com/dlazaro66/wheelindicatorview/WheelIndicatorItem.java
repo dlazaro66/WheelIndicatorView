@@ -15,6 +15,9 @@
  */
 package com.dlazaro66.wheelindicatorview;
 
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+
 /**
  * Created by david on 23/5/15.
  */
@@ -22,21 +25,38 @@ public class WheelIndicatorItem {
 
     private float weight;
     private int color;
+    private Paint paint = null;
 
-    public WheelIndicatorItem(){
+    public WheelIndicatorItem() {
         weight = 0;
     }
 
-    public WheelIndicatorItem(float weight,int color) {
-        if (weight < 0 )
+    public WheelIndicatorItem(float weight, int color) {
+        if (weight < 0)
             throw new IllegalArgumentException("weight value should be positive");
 
         this.weight = weight;
         this.color = color;
     }
 
+    public WheelIndicatorItem(float weight, LinearGradient gradient) {
+        if (weight < 0) {
+            throw new IllegalArgumentException("weight value should be positive");
+        }
+        this.weight = weight;
+        this.paint = new Paint();
+        this.paint.setShader(gradient);
+    }
+
+    public void setGradient(LinearGradient gradient){
+        if(paint == null){
+            paint = new Paint();
+        }
+        paint.setShader(gradient);
+    }
+
     public void setWeight(float weight) {
-        if (weight < 0 )
+        if (weight < 0)
             throw new IllegalArgumentException("weight value should be positive");
 
         this.weight = weight;
@@ -52,6 +72,14 @@ public class WheelIndicatorItem {
 
     public int getColor() {
         return color;
+    }
+
+    public void setPaint(Paint paint) {
+        this.paint = paint;
+    }
+
+    public Paint getPaint() {
+        return paint;
     }
 
 }
