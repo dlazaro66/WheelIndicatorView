@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
                         gradientSwitch = 1;
                         break;
                 }
-                wheelIndicatorView.replaceWheelIndicatorItem(gradientAcitivtyPosition,item);
+                wheelIndicatorView.replaceWheelIndicatorItemAndAnimate(gradientAcitivtyPosition,item);
             }
         });
     }

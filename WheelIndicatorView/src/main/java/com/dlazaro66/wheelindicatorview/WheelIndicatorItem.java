@@ -31,6 +31,11 @@ public class WheelIndicatorItem {
         weight = 0;
     }
 
+    /**
+     * If you want to paint it with a solid color
+     * @param weight
+     * @param color
+     */
     public WheelIndicatorItem(float weight, int color) {
         if (weight < 0)
             throw new IllegalArgumentException("weight value should be positive");
@@ -39,6 +44,11 @@ public class WheelIndicatorItem {
         this.color = color;
     }
 
+    /**
+     * If you want to paint it with a gradient
+     * @param weight
+     * @param gradient
+     */
     public WheelIndicatorItem(float weight, LinearGradient gradient) {
         if (weight < 0) {
             throw new IllegalArgumentException("weight value should be positive");
