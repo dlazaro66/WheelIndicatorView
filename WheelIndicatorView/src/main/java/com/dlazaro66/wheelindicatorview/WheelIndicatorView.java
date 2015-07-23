@@ -133,7 +133,17 @@ public class WheelIndicatorView extends View {
     }
 
     /**
-     * Replaces the wheelIndicatorItem from the list. Useful for changing the item colors
+     * Replaces the wheelIndicatorItem from the list and reanimates. Useful for changing the item colors
+     * @param position Position of the item to be replaced
+     * @param item New item
+     */
+    public void replaceWheelIndicatorItemAndAnimate(int position, WheelIndicatorItem item){
+        wheelIndicatorItems.set(position, item);
+        startItemsAnimation();
+    }
+
+    /**
+     * Replaces the wheelIndicatorItem from the list and redraws. Useful for changing the item colors
      * @param position Position of the item to be replaced
      * @param item New item
      */
